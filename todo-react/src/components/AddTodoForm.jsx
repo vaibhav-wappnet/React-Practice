@@ -111,6 +111,7 @@ const AddTodoForm = () => {
 
     return (
         <>
+
             {editForm ? (
                 <div>
                     <h1>Edit Todo</h1>
@@ -124,7 +125,7 @@ const AddTodoForm = () => {
                             placeholder="Add Todo here"
                         />
                         <button className="btn">Update</button>
-                        <button className="btn" onClick={() => { setEditForm(false) }}>Cancel</button>
+                        <button className="btn btn-cancel" onClick={() => { setEditForm(false) }}>Cancel</button>
                     </form>
                 </div>
 
@@ -151,18 +152,37 @@ const AddTodoForm = () => {
             )}
             <div className="todo-list">
 
-                <ul>
-                    {todos.map((list) => (
-                        <li key={list.id}>
-                            <p>
-                                {list.text}
-                            </p>
-                            <button className="btn" onClick={() => { handleEdit(list) }}>Edit</button>
-                            <button className="btn btn-delete" onClick={() => { handleDelete(list.id) }}>Delete</button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                {todos.length === 0 ? (
+                    <div>
+                        <h4>There is no items in the todo list</h4>
+                    </div>
+                ) : (
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Your Tasks</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {todos.map((list) => (
+                                <tr key={list.id}>
+                                    <td width='25%'>{list.text}</td>
+
+                                    <td width="35%">
+                                        <button className="btn" onClick={() => { handleEdit(list) }}>Edit</button>
+                                    </td>
+                                    <td width="35%">
+                                        <button className="btn btn-delete" onClick={() => { handleDelete(list.id) }}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div >
         </>
     )
 }
