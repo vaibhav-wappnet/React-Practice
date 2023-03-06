@@ -1,6 +1,6 @@
 import React from 'react'
 import FoodBg from "../Assets/food-bg.jpg";
-import Form from "./Form";
+import Form from "../Components/Form";
 
 const Carousel = () => {
 
